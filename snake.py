@@ -16,6 +16,7 @@ died = False
 
 # Main Loop
 while not end_game:
+    os.system("clear")
     # Generate random objects on the map
     while len(map_objects) < NUM_OF_MAP_OBJECTS:
         new_position = [random.randint(0,MAP_WIDTH), random.randint(0, MAP_HEIGHT)]
@@ -24,10 +25,10 @@ while not end_game:
             map_objects.append(new_position)
     
     # Draw map
-    print("+" + "-" * MAP_WIDTH * 3 + "+")
+    print("╔" + "═" * MAP_WIDTH * 3 + "╗")
 
     for coordinate_y in range(MAP_HEIGHT):
-        print( "|", end="")
+        print( "║", end="")
         
         for coordinate_x in range(MAP_WIDTH):
 
@@ -37,7 +38,7 @@ while not end_game:
 
             for map_object in map_objects:
                 if map_object[POS_X] == coordinate_x and map_object[POS_Y] == coordinate_y:
-                    char_to_draw =  "#"
+                    char_to_draw =  "■"
                     object_in_cell = map_object
 
             for tail_piece in tail:
@@ -57,9 +58,9 @@ while not end_game:
                     died = True
 
             print(" {} ".format(char_to_draw), end="")
-        print("|")
+        print("║")
 
-    print("*" + "-" * MAP_WIDTH * 3 + "+")
+    print("╚" + "═" * MAP_WIDTH * 3 + "╝")
     
     # Ask user where he wants to move
     #direction = input("¿Dónde te quieres mover? [WASD]: ")
@@ -88,7 +89,7 @@ while not end_game:
         my_position[POS_X] %= MAP_WIDTH
     elif direction == "q":
        end_game = True
-    os.system("clear")
+    
 
 if died:
     print("You died!")
